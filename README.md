@@ -90,30 +90,28 @@ NorthBridge Cloud Solutions needs employees organized by department, permissions
 ## Authentication Flow
 
 ```
-User
-  │
 Microsoft Entra ID
-  │
-Security Groups
-  │
+        │
 Azure RBAC
-  │
-  ▼
-Windows VM
-  │
+        │
+──────────────────────────
+        │
+Windows Server VM
+        │
 System Assigned Managed Identity
-  │
-Azure Access Token
-  │
-  ├────────────► Azure Key Vault ──► Read Secret
-  │
-  └────────────► Azure Storage ────► Read Blob
-                       │
-                       ▼
-              Log Analytics Workspace
-                       │
-                       ▼
-                  Audit Logs
+        │
+──────────────────────────
+        │
+├────────────► Azure Key Vault
+│                  │
+│                  └── Secret
+│
+├────────────► Azure Storage
+│                  │
+│                  ├── Blob Container
+│                  └── identity-test.txt
+│
+└────────────► Log Analytics
 ```
 
 ## Verification
